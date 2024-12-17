@@ -1,0 +1,25 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# SQLite database
+# db.sqlite3
+
+# Django migration files (they should be versioned, but you may exclude certain files)
+migrations/
+
+# Static and media files (generated files)
+static/
+media/
+
+# Logs
+*.log
+
+# IDE/editor specific files (e.g., VS Code, PyCharm)
+.vscode/
+.idea/
+
+# Operating system specific files
+.DS_Store
+Thumbs.db

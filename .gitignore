@@ -23,3 +23,5 @@ media/
 # Operating system specific files
 .DS_Store
 Thumbs.db
+testApp1/__pycache__/views.cpython-310.pyc
+*.pyc

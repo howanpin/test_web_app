@@ -19,13 +19,14 @@
     </div>
     <div class="show_result">
     <!-- メッセージがある場合に表示 -->
-    {% if return_value1 or return_value1 == 0 %}
+    <!-- TODO:閾値以下の場合に警告メッセージを出すようにする -->
+    {% if max_weight or max_weight == 0 %}
         <p>MAX重量</p>
         <p>{{ max_weight }}</p>
         <p>80%の重量（実測値）</p>
-        <p>{{ return_value1 }}</p>
+        <p>{{ actual_eighty_percent_weight }}</p>
         <p>80%の重量（2.5kg刻み）</p>
-        <p>{{ return_value2 }}</p>
+        <p>{{ eighty_percent_weight }}</p>
     {% endif %}
     </div>
   </div>

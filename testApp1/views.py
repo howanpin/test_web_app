@@ -9,24 +9,15 @@ def index(request):
     if request.method == "POST":
         context = {}
 
-        # フォームから送信された重量(str型のため変換を行う)
+        # 最大重量(str型のため変換を行う)
         max_weight = float(request.POST.get('max_weight'))
-
-        # 閾値判定
-        input_limit = 10
-        if max_weight <= input_limit:
-            # 戻り値設定
-            context['max_weight'] = 0
-            context['actual_eighty_percent_weight'] = 0
-            context['eighty_percent_weight'] = 0
-            return render(request,'index.html',context)
 
         # 重量計算
         reference_weight = 2.5
         calculated = __calculate_weight(max_weight,reference_weight)
 
         # 戻り値設定
-        context = calculated
+        context = calculated.copy()
         context['max_weight'] = max_weight
 
         return render(request,'index.html',context)
@@ -39,39 +30,39 @@ def __calculate_weight(max_weight,reference_weight):
     context = {}
 
     # 80%の重量を計算（実値）
-    actual_eighty_percent_weight = max_weight * 0.8
+    raw_80_percent_weight = max_weight * 0.8
     # 基準重量で一番近い値を算出
-    eighty_percent_weight = __round_by_ref_weight(actual_eighty_percent_weight,reference_weight)
+    rounded_80_percent_weight = __round_by_ref_weight(raw_80_percent_weight,reference_weight)
     # 70%の重量を計算（実値）
-    actual_seventy_percent_weight = max_weight * 0.7
+    raw_70_percent_weight = max_weight * 0.7
     # 基準重量で一番近い値を算出
-    seventy_percent_weight = __round_by_ref_weight(actual_seventy_percent_weight,reference_weight)
+    rounded_70_percent_weight = __round_by_ref_weight(raw_70_percent_weight,reference_weight)
 
     # 戻り値設定
-    context['actual_eighty_percent_weight'] = actual_eighty_percent_weight
-    context['eighty_percent_weight'] = eighty_percent_weight
-    context['actual_seventy_percent_weight'] = actual_seventy_percent_weight
-    context['seventy_percent_weight'] = seventy_percent_weight
+    context['raw_80_percent_weight'] = raw_80_percent_weight
+    context['rounded_80_percent_weight'] = rounded_80_percent_weight
+    context['raw_70_percent_weight'] = raw_70_percent_weight
+    context['rounded_70_percent_weight'] = rounded_70_percent_weight
 
     return context
 
-# 実値を基準重量で丸めた値を返却する
-# [パラメータ] actual_weight    実値の重量
+# 引数1番目の重量を基準重量で丸めた値を返却する
+# [パラメータ] target_weight    丸めたい重量
 # [パラメータ] reference_weight 基準重量
-# [戻り値] 実値を基準重量で丸めた値
-def __round_by_ref_weight(actual_weight,reference_weight):
+# [戻り値] 基準重量で丸めた値
+def __round_by_ref_weight(target_weight,reference_weight):
 
     # 実値を基準重量で割った商
-    quotient = round(actual_weight) // reference_weight
+    quotient = round(target_weight) // reference_weight
 
-    # 基準重量に則した重量のうち、actual_weightより軽い方
+    # 基準重量に則した重量のうち、target_weightより軽い方
     lighter_weight = reference_weight * quotient
-    # 基準重量に則した重量のうち、actual_weightより重い方
+    # 基準重量に則した重量のうち、target_weightより重い方
     heavier_weight = reference_weight * (quotient + 1)
 
-    # actual_weightに近い方を採用
-    diff_lighter_weight = abs(actual_weight - lighter_weight)
-    diff_heavier_weight = abs(actual_weight - heavier_weight)
-    rounded_weight = lighter_weight if diff_lighter_weight <= diff_heavier_weight else heavier_weight
+    # より近い重量を採用する（差が同じ場合は重い方を採用）
+    diff_lighter_weight = abs(target_weight - lighter_weight)
+    diff_heavier_weight = abs(target_weight - heavier_weight)
+    rounded_weight = heavier_weight if diff_heavier_weight <= diff_lighter_weight else lighter_weight
 
     return rounded_weight

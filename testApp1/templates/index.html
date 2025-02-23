@@ -29,20 +29,26 @@
       {% if max_weight or max_weight == 0 %}
         <div class="row">
           <div class="col-sm-2">
-            <p>MAX重量</p>
+            <p><b>MAX重量</b></p>
             <p>{{ max_weight }}</p>
           </div>
           <div class="col-sm-3">
-            <p>80%の重量（実測値）</p>
-            <p>{{ raw_80_percent_weight }}</p>
-            <p>80%の重量（2.5kg刻み）</p>
-            <p>{{ rounded_80_percent_weight }}</p>
+            <p><b>90%の重量（2.5kg刻み）</b></p>
+            <p>{{ rounded_90_percent_weight }}</p>
+            <p>90%の重量（実測値）</p>
+            <p>{{ raw_90_percent_weight }}</p>
           </div>
           <div class="col-sm-3">
+            <p><b>80%の重量（2.5kg刻み）</b></p>
+            <p>{{ rounded_80_percent_weight }}</p>
+            <p>80%の重量（実測値）</p>
+            <p>{{ raw_80_percent_weight }}</p>
+          </div>
+          <div class="col-sm-3">
+            <p><b>70%の重量（2.5kg刻み）</b></p>
+            <p>{{ rounded_70_percent_weight }}</p>
             <p>70%の重量（実測値）</p>
             <p>{{ raw_70_percent_weight }}</p>
-            <p>70%の重量（2.5kg刻み）</p>
-            <p>{{ rounded_70_percent_weight }}</p>
           </div>
         </div>
       {% endif %}

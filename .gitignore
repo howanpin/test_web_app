@@ -12,6 +12,8 @@ migrations/
 # Static and media files (generated files)
 static/
 media/
+# 例外として testApp1/static/ を無視しない
+!testApp1/static/
 
 # Logs
 *.log

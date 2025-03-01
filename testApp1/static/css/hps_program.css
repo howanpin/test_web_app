@@ -1,0 +1,32 @@
+html {
+    font-size: 16px;
+  }
+
+.explain-hps {
+    word-break: keep-all;
+}
+
+.week-num{
+    text-decoration: underline;
+    text-decoration-style: double; 
+}
+
+.max-weight{
+    text-decoration: underline;
+    text-decoration-style: double; 
+}
+
+/* スマホサイズ以下の設定 */
+@media(max-width:767px){
+    .title {
+        font-size:1.4rem;
+    }
+
+    .explain-hps {
+        font-size:0.7rem;
+    }
+
+    .form-guide{
+        font-size:1.2rem;
+    }
+}

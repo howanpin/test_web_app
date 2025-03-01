@@ -5,19 +5,21 @@
 <head>
   {% bootstrap_css %}
   {% bootstrap_javascript %}
+  <!-- {% load static %} -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.5">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<link rel="stylesheet" type="text/css" href="{% static 'css/one_rm_max.css' %}">-->
   <title>重量計算</title>
 </head>
 <body>
-  <div class="header pt-3 ps-3">
-    <h2>1RMパーセンテージ計算</h2>
+  <div class="header pt-3 ps-sm-4">
+    <h2 class = "text-center text-sm-start">1RMパーセンテージ計算</h2>
   </div>
   <div class="main">
     <div class="container">
-      <div class="explain">
+      <div class="explain col-12">
         <br>
-        <h2 class="text-nowrap">1回ギリギリ挙げられる重さを入力してください</h2>
+        <h3 class="text-wrap">1回ギリギリ挙げられる重さを入力してください</h3>
         <form action="" method="post">
         {% csrf_token %}
         <input class="form-control-sm" type="number" step=0.1 min=10 max=1000 required="required" name="max_weight" placeholder=100>
@@ -31,25 +33,25 @@
         <div class="row">
           <div class="col-sm-2">
             <p><b>MAX重量</b></p>
-            <p>{{ max_weight }}</p>
+            <p>{{ max_weight }}kg</p>
           </div>
           <div class="col-sm-3">
             <p><b>90%の重量（2.5kg刻み）</b></p>
-            <p>{{ rounded_90_percent_weight }}</p>
+            <p>{{ rounded_90_percent_weight }}kg</p>
             <p>90%の重量（実測値）</p>
-            <p>{{ raw_90_percent_weight }}</p>
+            <p>{{ raw_90_percent_weight }}kg</p>
           </div>
           <div class="col-sm-3">
             <p><b>80%の重量（2.5kg刻み）</b></p>
-            <p>{{ rounded_80_percent_weight }}</p>
+            <p>{{ rounded_80_percent_weight }}kg</p>
             <p>80%の重量（実測値）</p>
-            <p>{{ raw_80_percent_weight }}</p>
+            <p>{{ raw_80_percent_weight }}kg</p>
           </div>
           <div class="col-sm-3">
             <p><b>70%の重量（2.5kg刻み）</b></p>
-            <p>{{ rounded_70_percent_weight }}</p>
+            <p>{{ rounded_70_percent_weight }}kg</p>
             <p>70%の重量（実測値）</p>
-            <p>{{ raw_70_percent_weight }}</p>
+            <p>{{ raw_70_percent_weight }}kg</p>
           </div>
         </div>
       {% endif %}

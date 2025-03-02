@@ -27,3 +27,6 @@ media/
 Thumbs.db
 testApp1/__pycache__/views.cpython-310.pyc
 *.pyc
+
+# environment settings
+.env

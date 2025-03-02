@@ -2,6 +2,10 @@ html {
     font-size: 16px;
   }
 
+.title{
+    word-break: keep-all; 
+}
+
 .explain-hps {
     word-break: keep-all;
 }
@@ -19,7 +23,7 @@ html {
 /* スマホサイズ以下の設定 */
 @media(max-width:767px){
     .title {
-        font-size:1.4rem;
+        font-size:1.3rem;
     }
 
     .explain-hps {
@@ -27,6 +31,6 @@ html {
     }
 
     .form-guide{
-        font-size:1.2rem;
+        font-size:1.1rem;
     }
 }

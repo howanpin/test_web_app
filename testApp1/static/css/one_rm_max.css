@@ -6,6 +6,10 @@ html {
     word-break: keep-all;
 }
 
+.link-guide{
+    font-size:0.8rem;
+}
+
 /* スマホサイズ以下の設定 */
 @media(max-width:767px){
     .title {

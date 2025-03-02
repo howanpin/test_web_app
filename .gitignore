@@ -30,3 +30,6 @@ testApp1/__pycache__/views.cpython-310.pyc
 
 # environment settings
 .env
+
+# db
+db.sqlite3

@@ -55,6 +55,8 @@ def one_rm_max(request):
         context['rounded_70_percent_weight'] = rounded_70_percent_weight
 
         return render(request,'one_rm_max.html',context)
+    # GET,POST以外には空のレスポンスを返す
+    return HttpResponse("")
     
 def hps_program(request):
     if request.method == "GET":
@@ -76,3 +78,5 @@ def hps_program(request):
         # -------------------------------------------------------
         context['program'] = hps_program
         return render(request,'hps_program.html',context)
+    # GET,POST以外には空のレスポンスを返す
+    return HttpResponse("") 

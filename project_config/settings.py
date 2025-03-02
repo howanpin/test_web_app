@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-@@&#tjh0yst72c@-s&ep))n(x1y5-xd53p+kzu6_af_^gc866y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# 同一ネットワークからの接続を許可する場合、192～をホストマシンのIPアドレスに書き換えること
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.x.x']
 
 
 # Application definition

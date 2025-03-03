@@ -2,6 +2,19 @@ html {
     font-size: 16px;
   }
 
+.explain {
+    word-break: keep-all;
+}
+
+.table{
+    max-width: 60%;
+}
+
+.remark{
+    color:gray;
+    font-size:0.9rem;
+}
+
 .form-guide {
     word-break: keep-all;
 }
@@ -19,6 +32,14 @@ html {
 @media(max-width:767px){
     .title {
         font-size:2.0rem;
+    }
+
+    .explain {
+        font-size:0.7rem;
+    }
+
+    .remark{
+        font-size:0.6rem;
     }
 
     .form-guide {

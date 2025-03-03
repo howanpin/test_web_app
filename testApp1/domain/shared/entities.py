@@ -37,6 +37,21 @@ class Weight:
         total_weight = self.weight + sum(w.weight for w in weights)
         return Weight(total_weight)
 
+#パーセンテージクラス
+class Percentage:
+    def __init__(self,percentage):
+        #TODO:完全コンストラクタにする
+        self.percentage = percentage
+    def __str__(self):
+        return str(self.percentage)
+
+    # 比率変換
+    #
+    # 本インスタンスのパーセンテージを比率に変換する
+    # [戻り値]変換後の比率
+    def convert_to_ratio(self):
+        return self.percentage * 0.01
+
 
 # セット数クラス
 class Sets:

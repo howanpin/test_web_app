@@ -13,43 +13,65 @@
 <body>
   <div class="header pt-3 ps-sm-4">
     <h2 class = "title text-center text-sm-start">1RMパーセンテージ計算</h2>
+    <div class = "explain ps-3 pe-3 ps-sm-0 pe-sm-0">
+      <p class = "m-0">1回ギリギリ挙げられる重さ（1RM）の〇〇%の重量を計算します。</p>
+      <p class = "m-0 mb-1">基準重量は、変更できる最小の重量を入力します。</p>
+      <p class = "m-0">例：通っているジムのベンチプレスでは、2.5kgずつしか重量を変えられない</p>
+      <p class = "m-0 mb-1">⇒基準重量を2.5kgに設定</p>
+      <details>
+        <summary>計算例</summary>
+        <table class="table table-sm table-bordered table-striped mb-0">
+          <tr>
+            <th>1RM</th>
+            <th>パーセント</th>
+            <th>基準重量</th>
+          </tr>
+          <tr>
+            <td>90kg</td>
+            <td>90%</td>
+            <td>2.5kg</td>
+          </tr>
+        </table>
+        <p class = "mt-0 mb-0 ms-1"><b>90kg*0.9=81kg</b>となるが、これを基準重量2.5kgで丸めて、<b>80kg</b>とする。</p>
+        <p class = "remark mt-0 mb-0 ms-1">※80kgと82.5kgのうち、80kgの方が81kgに近いため、80kgを採用する。</p>
+        <p class = "remark mt-0 ms-1">※どちらも同じ近さの場合、重い方の重量を採用する。</p>
+      </details>
+    </div>
   </div>
   <div class="main">
     <div class="container">
       <div class="form pt-2">
-        <h3 class="form-guide">1回ギリギリ挙げられる重さを<wbr>入力してください</h3>
         <form action="" method="post">
-        {% csrf_token %}
-        <input class="form-control-sm" type="number" step=0.1 min=10 max=1000 required="required" name="max_weight" placeholder=100>
-        <button class="btn btn-primary btn-sm" style="margin-bottom:0.3%;" type="submit">送信</button>
+          {% csrf_token %}
+          <h3 class="form-guide">1回ギリギリ挙げられる重さを<wbr>入力してください</h3>
+          <input class="form-control-sm" type="number" step=0.1 min=10 max=900 required="required" name="max_weight" placeholder=100>
+          <span>kg</span>
+          <h3 class="form-guide mt-2">パーセントを<wbr>入力してください</h3>
+          <input class="form-control-sm" type="number" step=0.5 min=1 max=100 required="required" name="percentage" placeholder=90>
+          <span>%</span>
+          <h3 class="form-guide mt-2">基準重量を<wbr>入力してください</h3>
+          <input class="form-control-sm" type="number" value=2.5 step=0.5 min=0.5 max=50 required="required" name="reference_weight">
+          <span>kg</span>
+          <br>
+          <button class="btn btn-primary btn-sm mt-3" style="margin-bottom:0.3%;" type="submit">送信</button>
         </form>
       </div>
       <br>
       <div class="show-result">
       <!-- メッセージがある場合に表示 -->
       {% if max_weight or max_weight == 0 %}
-        <div class="row">
-          <div class="col-sm-2">
+        <div class="row mb-sm-2">
+          <div class="col-sm-3">
             <p><b>MAX重量</b></p>
             <p>{{ max_weight }}kg</p>
           </div>
-          <div class="col-sm-3">
-            <p><b>90%の重量（2.5kg刻み）</b></p>
-            <p>{{ rounded_90_percent_weight }}kg</p>
-            <p>90%の重量（実測値）</p>
-            <p>{{ raw_90_percent_weight }}kg</p>
+          <div class="col-sm-3 ps-sm-0">
+            <p><b>{{ percentage }}%の重量({{ reference_weight }}kg刻み)</b></p>
+            <p>{{ rounded_percent_weight }}kg</p>
           </div>
           <div class="col-sm-3">
-            <p><b>80%の重量（2.5kg刻み）</b></p>
-            <p>{{ rounded_80_percent_weight }}kg</p>
-            <p>80%の重量（実測値）</p>
-            <p>{{ raw_80_percent_weight }}kg</p>
-          </div>
-          <div class="col-sm-3">
-            <p><b>70%の重量（2.5kg刻み）</b></p>
-            <p>{{ rounded_70_percent_weight }}kg</p>
-            <p>70%の重量（実測値）</p>
-            <p>{{ raw_70_percent_weight }}kg</p>
+            <p><b>{{ percentage }}%の重量(実測値)</b></p>
+            <p>{{ raw_percent_weight }}kg</p>
           </div>
         </div>
       {% endif %}

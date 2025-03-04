@@ -1,28 +1,37 @@
 from ..shared.entities import TrainingMenu, Weight, Reps, Sets
 from .constants import TrainingType
 
-# 1～6週目のプログラムクラス（1週当たりH,P,Sの3メニューで、6週分なので18メニューの情報を持つ）
+# HPSプログラムクラス　1～6週目のメニューを持つ。（1週当たりH,P,Sの3メニューで、6週分で18メニューの情報を持つ）
 class HpsProgram:
     def __init__(self,max_weight:Weight):
-        # TODO:完全コンストラクタにする/マジックナンバー解消
+        # TODO:完全コンストラクタにする
         # 最大重量
         self.max_weight = max_weight
-        # 1週目メニュー
-        self.first_week_menu = HpsProgramPerWeek(max_weight,1)
-        # 2週目メニュー
-        self.second_week_menu = HpsProgramPerWeek(max_weight,2)
-        # 3週目メニュー
-        self.third_week_menu = HpsProgramPerWeek(max_weight,3)
-        # 4週目メニュー
-        self.fourth_week_menu = HpsProgramPerWeek(max_weight,4)
-        # 5週目メニュー
-        self.fifth_week_menu = HpsProgramPerWeek(max_weight,5)
-        # 6週目メニュー
-        self.sixth_week_menu = HpsProgramPerWeek(max_weight,6)
+        # 1～6週目のメニュー
+        self.hps_menus_for_weeks = self.__create_hps_menus_for_weeks(max_weight)
 
 
-# n週目のプログラムクラス（H,P,Sで3メニューの情報を持つ）
-class HpsProgramPerWeek:
+    def __create_hps_menus_for_weeks(self,max_weight):
+        # TODO：マジックナンバー解消
+        hps_menus_for_weeks = (
+            #1週目メニュー
+            HpsMenusPerWeek(max_weight,1),
+            #2週目メニュー            
+            HpsMenusPerWeek(max_weight,2),
+            #3週目メニュー              
+            HpsMenusPerWeek(max_weight,3),
+            #4週目メニュー  
+            HpsMenusPerWeek(max_weight,4),
+            #5週目メニュー  
+            HpsMenusPerWeek(max_weight,5),
+            #6週目メニュー  
+            HpsMenusPerWeek(max_weight,6)
+            )
+        return hps_menus_for_weeks
+
+
+# n週目のメニュークラス（H,P,Sで3メニューの情報を持つ）
+class HpsMenusPerWeek:
     def __init__(self,max_weight:Weight,week_number):
        # 最大重量
        self.max_weight = max_weight

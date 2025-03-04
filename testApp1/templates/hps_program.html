@@ -64,97 +64,24 @@
         <p class="max-weight"><b>MAX重量</b></p>
         <p>{{ program.max_weight }}kg</p>
       </div>
-        <div class="row">
+      <div class="row">
+          {% for hps_menus_per_week in program.hps_menus_for_weeks %}
           <div class="col-sm-2">
-            <p class="week-num"><b>1週目</b></p>
+            <p class="week-num"><b>{{ forloop.counter }}週目</b></p>
             <p><b>筋肥大メニュー(H)</b></p>
-            <p>{{ program.first_week_menu.h_menu.weight }}kg</p>
-            <p>{{ program.first_week_menu.h_menu.reps }}レップ</p>
-            <p>{{ program.first_week_menu.h_menu.sets }}セット</p>
+            <p>{{ hps_menus_per_week.h_menu.weight }}kg</p>
+            <p>{{ hps_menus_per_week.h_menu.reps }}レップ</p>
+            <p>{{ hps_menus_per_week.h_menu.sets }}セット</p>
             <p><b>パワーメニュー(P)</b></p>
-            <p>{{ program.first_week_menu.p_menu.weight }}kg</p>
-            <p>{{ program.first_week_menu.p_menu.reps }}レップ</p>
-            <p>{{ program.first_week_menu.p_menu.sets }}セット</p>
+            <p>{{ hps_menus_per_week.p_menu.weight }}kg</p>
+            <p>{{ hps_menus_per_week.p_menu.reps }}レップ</p>
+            <p>{{ hps_menus_per_week.p_menu.sets }}セット</p>
             <p><b>筋力メニュー(S)</b></p>
-            <p>{{ program.first_week_menu.s_menu.weight }}kg</p>
-            <p>{{ program.first_week_menu.s_menu.reps }}</p>
-            <p>{{ program.first_week_menu.s_menu.sets }}セット</p>
+            <p>{{ hps_menus_per_week.s_menu.weight }}kg</p>
+            <p>{{ hps_menus_per_week.s_menu.reps }}</p>
+            <p>{{ hps_menus_per_week.s_menu.sets }}セット</p>
           </div>
-          <div class="col-sm-2">
-            <p class="week-num"><b>2週目</b></p>
-            <p><b>筋肥大メニュー(H)</b></p>
-            <p>{{ program.second_week_menu.h_menu.weight }}kg</p>
-            <p>{{ program.second_week_menu.h_menu.reps }}レップ</p>
-            <p>{{ program.second_week_menu.h_menu.sets }}セット</p>
-            <p><b>パワーメニュー(P)</b></p>
-            <p>{{ program.second_week_menu.p_menu.weight }}kg</p>
-            <p>{{ program.second_week_menu.p_menu.reps }}レップ</p>
-            <p>{{ program.second_week_menu.p_menu.sets }}セット</p>
-            <p><b>筋力メニュー(S)</b></p>
-            <p>{{ program.second_week_menu.s_menu.weight }}kg</p>
-            <p>{{ program.second_week_menu.s_menu.reps }}</p>
-            <p>{{ program.second_week_menu.s_menu.sets }}セット</p>
-          </div>
-          <div class="col-sm-2">
-            <p class="week-num"><b>3週目</b></p>
-            <p><b>筋肥大メニュー(H)</b></p>
-            <p>{{ program.third_week_menu.h_menu.weight }}kg</p>
-            <p>{{ program.third_week_menu.h_menu.reps }}レップ</p>
-            <p>{{ program.third_week_menu.h_menu.sets }}セット</p>
-            <p><b>パワーメニュー(P)</b></p>
-            <p>{{ program.third_week_menu.p_menu.weight }}kg</p>
-            <p>{{ program.third_week_menu.p_menu.reps }}レップ</p>
-            <p>{{ program.third_week_menu.p_menu.sets }}セット</p>
-            <p><b>筋力メニュー(S)</b></p>
-            <p>{{ program.third_week_menu.s_menu.weight }}kg</p>
-            <p>{{ program.third_week_menu.s_menu.reps }}</p>
-            <p>{{ program.third_week_menu.s_menu.sets }}セット</p>
-          </div>
-          <div class="col-sm-2">
-            <p class="week-num"><b>4週目</b></p>
-            <p><b>筋肥大メニュー(H)</b></p>
-            <p>{{ program.fourth_week_menu.h_menu.weight }}kg</p>
-            <p>{{ program.fourth_week_menu.h_menu.reps }}レップ</p>
-            <p>{{ program.fourth_week_menu.h_menu.sets }}セット</p>
-            <p><b>パワーメニュー(P)</b></p>
-            <p>{{ program.fourth_week_menu.p_menu.weight }}kg</p>
-            <p>{{ program.fourth_week_menu.p_menu.reps }}レップ</p>
-            <p>{{ program.fourth_week_menu.p_menu.sets }}セット</p>
-            <p><b>筋力メニュー(S)</b></p>
-            <p>{{ program.fourth_week_menu.s_menu.weight }}kg</p>
-            <p>{{ program.fourth_week_menu.s_menu.reps }}</p>
-            <p>{{ program.fourth_week_menu.s_menu.sets }}セット</p>
-          </div>
-          <div class="col-sm-2">
-            <p class="week-num"><b>5週目</b></p>
-            <p><b>筋肥大メニュー(H)</b></p>
-            <p>{{ program.fifth_week_menu.h_menu.weight }}kg</p>
-            <p>{{ program.fifth_week_menu.h_menu.reps }}レップ</p>
-            <p>{{ program.fifth_week_menu.h_menu.sets }}セット</p>
-            <p><b>パワーメニュー(P)</b></p>
-            <p>{{ program.fifth_week_menu.p_menu.weight }}kg</p>
-            <p>{{ program.fifth_week_menu.p_menu.reps }}レップ</p>
-            <p>{{ program.fifth_week_menu.p_menu.sets }}セット</p>
-            <p><b>筋力メニュー(S)</b></p>
-            <p>{{ program.fifth_week_menu.s_menu.weight }}kg</p>
-            <p>{{ program.fifth_week_menu.s_menu.reps }}</p>
-            <p>{{ program.fifth_week_menu.s_menu.sets }}セット</p>
-          </div>
-          <div class="col-sm-2">
-            <p class="week-num"><b>6週目</b></p>
-            <p><b>筋肥大メニュー(H)</b></p>  
-            <p>{{ program.sixth_week_menu.h_menu.weight }}kg</p>
-            <p>{{ program.sixth_week_menu.h_menu.reps }}レップ</p>
-            <p>{{ program.sixth_week_menu.h_menu.sets }}セット</p>
-            <p><b>パワーメニュー(P)</b></p>
-            <p>{{ program.sixth_week_menu.p_menu.weight }}kg</p>
-            <p>{{ program.sixth_week_menu.p_menu.reps }}レップ</p>
-            <p>{{ program.sixth_week_menu.p_menu.sets }}セット</p>
-            <p><b>筋力メニュー(S)</b></p>
-            <p>{{ program.sixth_week_menu.s_menu.weight }}kg</p>
-            <p>{{ program.sixth_week_menu.s_menu.reps }}</p>
-            <p>{{ program.sixth_week_menu.s_menu.sets }}セット</p>
-          </div>
+          {% endfor %}
         </div>
       {% endif %}
       </div>

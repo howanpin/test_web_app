@@ -73,7 +73,7 @@ def hps_program(request):
 
         context = {}
         # -------------------------------------------------------
-        # 最大重量
+        # プログラム作成
         # -------------------------------------------------------
         context['program'] = hps_program
         return render(request,'hps_program.html',context)

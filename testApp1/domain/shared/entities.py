@@ -1,8 +1,9 @@
 from __future__ import annotations  # 型ヒントを遅延評価
 # 重量クラス
 class Weight:
+    __slots__ = ["weight"]
+
     def __init__(self,weight):
-        # TODO:完全コンストラクタにする
         self.weight = weight
     def __str__(self):
         return str(self.weight)
@@ -39,8 +40,9 @@ class Weight:
 
 #パーセンテージクラス
 class Percentage:
+    __slots__ = ["percentage"]
+
     def __init__(self,percentage):
-        #TODO:完全コンストラクタにする
         self.percentage = percentage
     def __str__(self):
         return str(self.percentage)
@@ -55,6 +57,8 @@ class Percentage:
 
 # セット数クラス
 class Sets:
+    __slots__ = ["sets"]
+
     def __init__(self,sets):
         # TODO:完全コンストラクタにする
         self.sets = sets
@@ -63,6 +67,8 @@ class Sets:
 
 # レップ数クラス
 class Reps:
+    __slots__ = ["reps"]
+
     def __init__(self,reps):
         # TODO:完全コンストラクタにする
         self.reps = reps
@@ -71,6 +77,8 @@ class Reps:
 
 # トレーニングメニュークラス
 class TrainingMenu:
+    __slots__ = ["weight","reps","sets"]
+
     def __init__(self,weight:Weight,reps:Reps,sets:Sets):
         # TODO:完全コンストラクタにする
         self.weight = weight

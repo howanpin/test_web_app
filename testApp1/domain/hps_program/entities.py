@@ -3,8 +3,9 @@ from .constants import TrainingType
 
 # HPSプログラムクラス　1～6週目のメニューを持つ。（1週当たりH,P,Sの3メニューで、6週分で18メニューの情報を持つ）
 class HpsProgram:
+    __slots__ = ["max_weight","hps_menus_for_weeks"]
+
     def __init__(self,max_weight:Weight):
-        # TODO:完全コンストラクタにする
         # 最大重量
         self.max_weight = max_weight
         # 1～6週目のメニュー
@@ -32,6 +33,8 @@ class HpsProgram:
 
 # n週目のメニュークラス（H,P,Sで3メニューの情報を持つ）
 class HpsMenusPerWeek:
+    __slots__ = ["max_weight","week_number","h_menu","p_menu","s_menu"]
+
     def __init__(self,max_weight:Weight,week_number):
        # 最大重量
        self.max_weight = max_weight
@@ -44,15 +47,11 @@ class HpsMenusPerWeek:
        self.p_menu = TrainingMenuForHps(max_weight,week_number,TrainingType.TRAINING_TYPE_P)
        # 筋力の日のメニュー
        self.s_menu = TrainingMenuForHps(max_weight,week_number,TrainingType.TRAINING_TYPE_S)
-    
-    def __calculate_total_weight(self,h_menu,p_menu,s_menu):
-        h_menu_total_weight = h_menu.calculate_total_weight()
-        p_menu_total_weight = p_menu.calculate_total_weight()
-        s_menu_total_weight = s_menu.calculate_total_weight()
-        return Weight(0).add_all(h_menu_total_weight,p_menu_total_weight,s_menu_total_weight)
+   
 
 # HPS用メニュークラス
 class TrainingMenuForHps(TrainingMenu):
+    __slots__ = TrainingMenu.__slots__ + ["week_number","menu_type"]
     def __init__(self,max_weight:Weight,week_number,menu_type:TrainingType):
         # 重量
         weight = self.__choose_weight(max_weight,week_number,menu_type)
@@ -67,7 +66,6 @@ class TrainingMenuForHps(TrainingMenu):
         # メニュー種別
         self.menu_type = menu_type
 
-    # TODO:このあたりの戦略設定を見直す
     # 重量選択
     def __choose_weight(self,max_weight:Weight,week_number,menu_type):
         # 比率選択

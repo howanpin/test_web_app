@@ -1,9 +1,16 @@
-from ..shared.entities import TrainingMenu, Weight, Reps, Sets
+from ..shared.value_objects import TrainingMenu, Weight, Reps, Sets
 from .constants import TrainingType
 
 # HPSプログラムクラス　1～6週目のメニューを持つ。（1週当たりH,P,Sの3メニューで、6週分で18メニューの情報を持つ）
 class HpsProgram:
     __slots__ = ["max_weight","hps_menus_for_weeks"]
+
+    FIRST_WEEK_NUMBER = 1
+    SECOND_WEEK_NUMBER = 2
+    THIRD_WEEK_NUMBER = 3
+    FOURTH_WEEK_NUMBER = 4
+    FIFTH_WEEK_NUMBER = 5
+    SIXTH_WEEK_NUMBER = 6
 
     def __init__(self,max_weight:Weight):
         # 最大重量

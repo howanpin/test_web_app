@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .domain.shared.entities import Weight,Percentage
-from .domain.hps_program.entities import HpsProgram
+from .domain.shared.value_objects import Weight,Percentage
+from .domain.hps_program.value_objects import HpsProgram
 
 def one_rm_max(request):
     if request.method == "GET":

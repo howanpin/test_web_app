@@ -101,11 +101,17 @@
     const captureBtn = document.getElementById("capture");
     captureBtn.addEventListener("click", () => {
       // 押下時処理
+      const newTab = window.open(); // 新しいタブを開く
       html2canvas(document.querySelector(".result")) // 結果画面をキャプチャ
       .then(canvas => {
       const imgData = canvas.toDataURL("image/png"); // 描画したhtmlをpng形式に変換
-      const newTab = window.open(); // 新しいタブを開く
-      newTab.document.write("<img src='" + imgData + "'>"); // 開いたタブに書き込み
+      newTab.document.write(`
+        <div style="text-align: center; margin: 20px;">
+          <p style="margin-top: 10px; font-family: sans-serif; color: #333; font-size: 200%;">
+            画像を長押し/右クリックして保存してください。
+          </p>
+          <img src='${imgData}' style='border: 2px solid black; max-width: 90%; height: auto; padding-left: 5%;'>
+        </div>`); // 開いたタブに書き込み
       });
     });
   </script>

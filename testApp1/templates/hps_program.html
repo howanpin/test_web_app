@@ -8,6 +8,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{% static 'css/hps_program.css' %}">
+  <!-- スクショ機能用CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <title>HPSトレーニングプログラム自動組み立て</title>
 </head>
 <body>
@@ -56,35 +58,35 @@
         <button class="btn btn-primary btn-sm" style="margin-bottom:0.3%;" type="submit">送信</button>
         </form>
       </div>
-      <br>
-      <div class="show_result">
       <!-- メッセージがある場合に表示 -->
       {% if program.max_weight or program.max_weight == 0 %}
-      <div>
-        <p class="max-weight"><b>MAX重量</b></p>
-        <p>{{ program.max_weight }}kg</p>
-      </div>
-      <div class="row">
-          {% for hps_menus_per_week in program.hps_menus_for_weeks %}
-          <div class="col-sm-2">
-            <p class="week-num"><b>{{ forloop.counter }}週目</b></p>
-            <p><b>筋肥大メニュー(H)</b></p>
-            <p>{{ hps_menus_per_week.h_menu.weight }}kg</p>
-            <p>{{ hps_menus_per_week.h_menu.reps }}レップ</p>
-            <p>{{ hps_menus_per_week.h_menu.sets }}セット</p>
-            <p><b>パワーメニュー(P)</b></p>
-            <p>{{ hps_menus_per_week.p_menu.weight }}kg</p>
-            <p>{{ hps_menus_per_week.p_menu.reps }}レップ</p>
-            <p>{{ hps_menus_per_week.p_menu.sets }}セット</p>
-            <p><b>筋力メニュー(S)</b></p>
-            <p>{{ hps_menus_per_week.s_menu.weight }}kg</p>
-            <p>{{ hps_menus_per_week.s_menu.reps }}</p>
-            <p>{{ hps_menus_per_week.s_menu.sets }}セット</p>
+        <button id="capture" class="btn btn-outline-primary btn-sm mt-1 mb-1">メニューのスクリーンショットを作成</button>
+        <div class="result">
+          <div>
+            <p class="max-weight"><b>MAX重量</b></p>
+            <p>{{ program.max_weight }}kg</p>
           </div>
-          {% endfor %}
+          <div class="row">
+            {% for hps_menus_per_week in program.hps_menus_for_weeks %}
+            <div class="col-sm-2">
+              <p class="week-num"><b>{{ forloop.counter }}週目</b></p>
+              <p><b>筋肥大メニュー(H)</b></p>
+              <p>{{ hps_menus_per_week.h_menu.weight }}kg</p>
+              <p>{{ hps_menus_per_week.h_menu.reps }}レップ</p>
+              <p>{{ hps_menus_per_week.h_menu.sets }}セット</p>
+              <p><b>パワーメニュー(P)</b></p>
+              <p>{{ hps_menus_per_week.p_menu.weight }}kg</p>
+              <p>{{ hps_menus_per_week.p_menu.reps }}レップ</p>
+              <p>{{ hps_menus_per_week.p_menu.sets }}セット</p>
+              <p><b>筋力メニュー(S)</b></p>
+              <p>{{ hps_menus_per_week.s_menu.weight }}kg</p>
+              <p>{{ hps_menus_per_week.s_menu.reps }}</p>
+              <p>{{ hps_menus_per_week.s_menu.sets }}セット</p>
+            </div>
+            {% endfor %}
+          </div>
         </div>
       {% endif %}
-      </div>
       <div class="link-guide mt-2 mb-3">
         <a href="{% url 'one_rm_max' %}">1RMパーセンテージ計算ツールへ</a>
       </div>
@@ -94,5 +96,18 @@
   <div class="footer ps-sm-4">
     <p class="text-center text-sm-start">© 2025 developed by Shinya Kato</p>
   </div>
+  <script>
+    // スクショボタンの設定
+    const captureBtn = document.getElementById("capture");
+    captureBtn.addEventListener("click", () => {
+      // 押下時処理
+      html2canvas(document.querySelector(".result")) // 結果画面をキャプチャ
+      .then(canvas => {
+      const imgData = canvas.toDataURL("image/png"); // 描画したhtmlをpng形式に変換
+      const newTab = window.open(); // 新しいタブを開く
+      newTab.document.write("<img src='" + imgData + "'>"); // 開いたタブに書き込み
+      });
+    });
+  </script>
 </body>
 </html>

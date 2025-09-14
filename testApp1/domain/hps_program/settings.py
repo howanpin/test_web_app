@@ -1,4 +1,4 @@
-from ..shared.enums import WeekNumberEnum,MenuTypeEnum
+from .enums import WeekNumberEnum,MenuTypeEnum
 # トレーニングメニュー用設定値
 class TrainingMenuSettings:
 

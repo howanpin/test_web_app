@@ -1,5 +1,5 @@
 from ..shared.value_objects import TrainingMenu, Weight, Reps, Sets
-from ..shared.enums import WeekNumberEnum,MenuTypeEnum
+from .enums import WeekNumberEnum,MenuTypeEnum
 from .constants import REFERENCE_WEIGHT
 from .settings import TrainingMenuSettings
 

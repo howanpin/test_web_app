@@ -32,7 +32,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 # 同一ネットワークからの接続を許可する場合、192～をホストマシンのIPアドレスに書き換えること
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.0.16','workout-supporter.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.0.9','workout-supporter.onrender.com']
 
 
 # Application definition

@@ -52,7 +52,7 @@
       <div class="explain">
         <br>
         <h3 class="form-guide">1回ギリギリ挙げられる重さを入力してください</h3>
-        <form action="" method="post">
+        <form class = "mb-2" action="" method="post">
         {% csrf_token %}
         <input class="form-control-sm" type="number" step=0.1 min=10 max=1000 required="required" name="max_weight" placeholder=100>
         <button class="btn btn-primary btn-sm" style="margin-bottom:0.3%;" type="submit">送信</button>
@@ -60,30 +60,32 @@
       </div>
       <!-- メッセージがある場合に表示 -->
       {% if program.max_weight or program.max_weight == 0 %}
-        <button id="capture" class="btn btn-outline-primary btn-sm mt-1 mb-1">メニューのスクリーンショットを作成</button>
-        <div class="result">
-          <div>
-            <p class="max-weight"><b>MAX重量</b></p>
-            <p>{{ program.max_weight }}kg</p>
-          </div>
-          <div class="row">
-            {% for hps_menus_per_week in program.hps_menus_for_weeks %}
-            <div class="col-sm-2">
-              <p class="week-num"><b>{{ forloop.counter }}週目</b></p>
-              <p><b>筋肥大メニュー(H)</b></p>
-              <p>{{ hps_menus_per_week.h_menu.weight }}kg</p>
-              <p>{{ hps_menus_per_week.h_menu.reps }}レップ</p>
-              <p>{{ hps_menus_per_week.h_menu.sets }}セット</p>
-              <p><b>パワーメニュー(P)</b></p>
-              <p>{{ hps_menus_per_week.p_menu.weight }}kg</p>
-              <p>{{ hps_menus_per_week.p_menu.reps }}レップ</p>
-              <p>{{ hps_menus_per_week.p_menu.sets }}セット</p>
-              <p><b>筋力メニュー(S)</b></p>
-              <p>{{ hps_menus_per_week.s_menu.weight }}kg</p>
-              <p>{{ hps_menus_per_week.s_menu.reps }}</p>
-              <p>{{ hps_menus_per_week.s_menu.sets }}セット</p>
+        <button id="capture" class="btn btn-outline-primary btn-sm mt-2 mb-2">作成したメニューを画像にして保存</button>
+        <div class = "border ps-3 pt-3 pb-3">
+          <div class="result">
+            <div>
+              <p class="max-weight"><b>MAX重量</b></p>
+              <p>{{ program.max_weight }}kg</p>
             </div>
-            {% endfor %}
+            <div class="row">
+              {% for hps_menus_per_week in program.hps_menus_for_weeks %}
+              <div class="col-sm-2">
+                <p class="week-num"><b>{{ forloop.counter }}週目</b></p>
+                <p><b>筋肥大メニュー(H)</b></p>
+                <p>{{ hps_menus_per_week.h_menu.weight }}kg</p>
+                <p>{{ hps_menus_per_week.h_menu.reps }}レップ</p>
+                <p>{{ hps_menus_per_week.h_menu.sets }}セット</p>
+                <p><b>パワーメニュー(P)</b></p>
+                <p>{{ hps_menus_per_week.p_menu.weight }}kg</p>
+                <p>{{ hps_menus_per_week.p_menu.reps }}レップ</p>
+                <p>{{ hps_menus_per_week.p_menu.sets }}セット</p>
+                <p><b>筋力メニュー(S)</b></p>
+                <p>{{ hps_menus_per_week.s_menu.weight }}kg</p>
+                <p>{{ hps_menus_per_week.s_menu.reps }}</p>
+                <p>{{ hps_menus_per_week.s_menu.sets }}セット</p>
+              </div>
+              {% endfor %}
+            </div>
           </div>
         </div>
       {% endif %}
@@ -107,8 +109,8 @@
       const imgData = canvas.toDataURL("image/png"); // 描画したhtmlをpng形式に変換
       newTab.document.write(`
         <div style="text-align: center; margin: 20px;">
-          <p style="margin-top: 10px; font-family: sans-serif; color: #333; font-size: 200%;">
-            画像を長押し/右クリックして保存してください。
+          <p style="margin-top: 10px; font-family: sans-serif; color: #333; font-size: 1.0rem;">
+            スマホ→画像を長押しで保存<br>&nbsp;PC→画像を右クリックで保存
           </p>
           <img src='${imgData}' style='border: 2px solid black; max-width: 90%; height: auto; padding-left: 5%;'>
         </div>`); // 開いたタブに書き込み

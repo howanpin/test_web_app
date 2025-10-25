@@ -3,6 +3,11 @@ from __future__ import annotations  # 型ヒントを遅延評価
 class Weight:
     __slots__ = ["weight"]
 
+    def to_dict(self):
+        return {
+            "weight":self.weight
+        }
+
     def __init__(self,weight):
         self.weight = weight
     def __str__(self):
@@ -59,6 +64,11 @@ class Percentage:
 class Sets:
     __slots__ = ["sets"]
 
+    def to_dict(self):
+        return {
+            "sets":self.sets
+        }
+
     def __init__(self,sets):
         # TODO:完全コンストラクタにする
         self.sets = sets
@@ -69,6 +79,11 @@ class Sets:
 class Reps:
     __slots__ = ["reps"]
 
+    def to_dict(self):
+        return {
+            "reps":self.reps
+        }
+
     def __init__(self,reps):
         # TODO:完全コンストラクタにする
         self.reps = reps
@@ -78,6 +93,13 @@ class Reps:
 # トレーニングメニュークラス
 class TrainingMenu:
     __slots__ = ["weight","reps","sets"]
+
+    def to_dict(self):
+        return {
+            "weight":self.weight.to_dict(),
+            "reps":self.reps.to_dict(),
+            "sets":self.sets.to_dict()
+        }
 
     def __init__(self,weight:Weight,reps:Reps,sets:Sets):
         # TODO:完全コンストラクタにする

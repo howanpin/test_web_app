@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .domain.shared.value_objects import Weight,Percentage
 from .domain.hps_program.value_objects import HpsProgram
@@ -59,7 +59,10 @@ def one_rm_max(request):
     
 def hps_program(request):
     if request.method == "GET":
-        return render(request,'hps_program.html')
+        program = request.session.get('program', None)
+        print(request.session.get('program'))
+        context = {'program': program}
+        return render(request,'hps_program.html',context)
     
     if request.method == "POST":
         # 入力値
@@ -70,12 +73,10 @@ def hps_program(request):
 
         # プログラム構築
         hps_program = HpsProgram(max_weight)
+        
+        # セッションに格納
+        request.session['program'] = hps_program.to_dict()
 
-        context = {}
-        # -------------------------------------------------------
-        # プログラム作成
-        # -------------------------------------------------------
-        context['program'] = hps_program
-        return render(request,'hps_program.html',context)
+        return redirect('hps_program')
     # GET,POST以外には空のレスポンスを返す
     return HttpResponse("") 

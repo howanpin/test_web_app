@@ -7,6 +7,13 @@ from .settings import TrainingMenuSettings
 class HpsProgram:
     __slots__ = ["max_weight","hps_menus_for_weeks"]
 
+    ## TODO：オブジェクトをそのまま値として格納→ブラウザのキャッシュに保存は非推奨。今回は変更コスト大のため暫定対応。
+    def to_dict(self):
+        return {
+            "max_weight":self.max_weight,
+            "hps_menus_for_weeks":self.hps_menus_for_weeks
+        }
+
     def __init__(self,max_weight:Weight):
         # 最大重量
         self.max_weight = max_weight
@@ -35,7 +42,9 @@ class HpsProgram:
 # n週目のメニュークラス（H,P,Sで3メニューの情報を持つ）
 class HpsMenusPerWeek:
     __slots__ = ["week_number","h_menu","p_menu","s_menu"]
+    
 
+    
     def __init__(self,max_weight:Weight,week_number:WeekNumberEnum):
        # 何週目のメニューか
        self.week_number = week_number
@@ -50,6 +59,12 @@ class HpsMenusPerWeek:
 # HPS用メニュークラス
 class TrainingMenuForHps(TrainingMenu):
     __slots__ = TrainingMenu.__slots__ + ["week_number","menu_type"]
+
+    def to_dict(self):
+        return {
+            "week_number":self.week_number.value,
+            "menu_type":self.menu_type.value
+        }
 
     def __init__(self,max_weight:Weight,week_number:WeekNumberEnum,menu_type:MenuTypeEnum):
         # 何週目のメニューか

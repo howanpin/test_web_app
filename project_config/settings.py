@@ -145,5 +145,20 @@ SUPERUSER_NAME = env("SUPERUSER_NAME")
 SUPERUSER_EMAIL = env("SUPERUSER_EMAIL")
 SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
 
-# セッションにcookieを使用
+# セッション管理
+# DBを使わずにキャッシュで管理
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# ローカル環境の場合はメモリ、本番はredisを使用
+if os.environ.get('USE_REDIS', False):
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+            'LOCATION': os.environ['REDIS_URL'],
+        }
+    }
+else:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        }
+    }

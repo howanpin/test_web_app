@@ -7,7 +7,8 @@ class Weight:
     Attributes:
         amount(float):重量(kg)
     """
-    
+    amount:float
+
     def __init__(self,weight):
         self.amount = weight
     def to_dict(self):
@@ -51,6 +52,7 @@ class Percentage:
     Attributes:
         amount(float):パーセンテージ
     """
+    amount:float
 
     def __init__(self,percentage):
         self.amount = percentage
@@ -82,7 +84,8 @@ class Sets:
     Attributes:
         amount(int):セット数
     """
-
+    amount:int
+    
     def __init__(self,sets):
         self.amount = sets
     def to_dict(self):
@@ -99,6 +102,8 @@ class Reps:
     Attributes:
         amount(int):レップ数
     """
+    amount:int
+
     def __init__(self,reps):
         self.amount = reps
     def to_dict(self):
@@ -117,6 +122,10 @@ class TrainingMenu:
         reps(Reps):レップ数
         sets(Sets):セット数
     """
+    weight:Weight
+    reps:Reps
+    sets:Sets
+
     def __init__(self,weight:Weight,reps:Reps,sets:Sets):
         self.weight = weight
         self.reps = reps   

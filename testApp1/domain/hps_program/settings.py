@@ -1,6 +1,6 @@
 from .enums import WeekNumberEnum,MenuTypeEnum
-# トレーニングメニュー用設定値
-class TrainingMenuSettings:
+# HPSメニュー用設定値
+class HpsMenuSettings:
 
     # 重量比率{n週目,比率}
     HYPERTROPHY_WEIGHT_RATIO = {
